@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BPass Conductor</string>
+    <string name="align_scanner_in_frame">Align the QR code within the\nframe to scan automatically.</string>
+</resources>

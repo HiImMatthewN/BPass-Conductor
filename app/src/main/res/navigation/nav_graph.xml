@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/qrScannerFragment">
+
+    <fragment
+        android:id="@+id/qrScannerFragment"
+        android:name="com.spcba.bpassconductor.ui.fragments.QRScannerFragment"
+        android:label="QRScannerFragment" >
+        <action
+            android:id="@+id/action_qrScannerFragment_to_transactionFragment"
+            app:destination="@id/transactionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transactionFragment"
+        android:name="com.spcba.bpassconductor.ui.fragments.TransactionFragment"
+        android:label="TransactionFragment" />
+</navigation>
