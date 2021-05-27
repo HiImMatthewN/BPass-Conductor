@@ -1,8 +1,8 @@
 package com.spcba.bpassconductor.ui.activites;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -28,6 +28,7 @@ public class MainActivity extends BaseActivity {
     private AppCompatImageButton qrScannerBtn;
     private AppCompatImageButton transactionBtn;
     private NavController navController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,46 +44,46 @@ public class MainActivity extends BaseActivity {
         transactionView = binder.transactionView;
         qrScannerBtn = binder.qrScannerBtn;
         transactionBtn = binder.transactionBtn;
-        resetCameraBtn.setOnClickListener(btn->{
+        resetCameraBtn.setOnClickListener(btn -> {
             if (navController.getCurrentDestination().getId() == R.id.transactionFragment) return;
             mainActivityViewModel.resetCamera(true);
 
         });
 
-        qrScannerView.setOnClickListener(view->{
+        qrScannerView.setOnClickListener(view -> {
             goToQrScannerFragment();
         });
-        qrScannerBtn.setOnClickListener(btn->{
+        qrScannerBtn.setOnClickListener(btn -> {
             goToQrScannerFragment();
 
         });
 
-        transactionView.setOnClickListener(view->{
+        transactionView.setOnClickListener(view -> {
             goToTransactionFragment();
 
         });
-        transactionBtn.setOnClickListener(btn->{
+        transactionBtn.setOnClickListener(btn -> {
             goToQrScannerFragment();
 
         });
 
 
-
-
     }
-    private void goToQrScannerFragment(){
+
+    private void goToQrScannerFragment() {
         if (navController.getGraph().getStartDestination() == navController.getCurrentDestination().getId())
             return;
         navController.popBackStack();
-        qrScannerBtn.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_qr_scanner_selected));
-        transactionBtn.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_transaction_unselected));
+        qrScannerBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_qr_scanner_selected));
+        transactionBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_transaction_unselected));
 
     }
-    private void goToTransactionFragment(){
+
+    private void goToTransactionFragment() {
         if (navController.getCurrentDestination().getId() == R.id.transactionFragment) return;
         navController.navigate(R.id.action_qrScannerFragment_to_transactionFragment);
-        qrScannerBtn.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_qr_scanner_unselected));
-        transactionBtn.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_transaction_selected));
+        qrScannerBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_qr_scanner_unselected));
+        transactionBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_transaction_selected));
     }
 
     @Override
@@ -99,10 +100,16 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (BaseActivity.showPinFragment)
-            Log.d(TAG, "onResume: showing pin fragment");
-        else
-            Log.d(TAG, "onResume: not showing pin fragment");
+        if (BaseActivity.showPinFragment) {
+            goToPinActivity();
+            finish();
+        }
 
+
+    }
+
+    private void goToPinActivity() {
+        Intent pinActivityIntent = new Intent(this, PinActivity.class);
+        startActivity(pinActivityIntent);
     }
 }

@@ -9,7 +9,7 @@ import com.spcba.bpassconductor.interfaces.LogoutListener;
 
 public class BaseActivity extends AppCompatActivity implements LogoutListener {
     private static final String TAG = "BaseActivity";
-    public static  boolean showPinFragment = true;
+    public static  boolean showPinFragment = false;
     @Override
     protected void onResume() {
         super.onResume();

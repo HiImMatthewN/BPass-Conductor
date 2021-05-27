@@ -47,7 +47,7 @@ public class ScannedItemsAdapter extends RecyclerView.Adapter<ScannedItemsAdapte
             holder.scannedTypeIv.setImageDrawable(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.ic_bus_ticket_small));
 
         holder.scannedTypeTv.setText(scannedItem.getType());
-        holder.amountTv.setText(String.valueOf(scannedItem.getAmount()));
+        holder.amountTv.setText("₱ " + scannedItem.getAmount());
 
 
         Date dateScanned = scannedItem.getDateScanned();

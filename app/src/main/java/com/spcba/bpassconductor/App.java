@@ -31,7 +31,7 @@ public class App extends Application {
                     Log.d("App", "Session Destroyed");
                 }
             }
-        },  (1000 * 30  ) );
+        },  (1000 * 60  ) );
     }
 
     public static void resetSession() {
